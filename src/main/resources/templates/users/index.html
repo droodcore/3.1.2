@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:padding-left="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of users</title>
+</head>
+<body>
+<div th:if="${ not#lists.isEmpty(users)}">
+    <table>
+        <caption>LIST OF USERS</caption>
+        <thead>
+        <tr>
+            <th>Name, age</th>
+            <th>ID</th>
+            <th>e-mail</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td>
+                <a th:text="${user.getName() + ', ' + user.getAge()}"
+                    th:href="@{/users/{id}(id=${user.getId()})}"></a>
+            </td>
+            <td th:text="${user.getId()}"></td>>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getAddress()}"></td>
+            <td>
+                <a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br/>
+<hr/>
+
+<a href="/users/new">Create new user</a>
+
+</body>
+</html>
